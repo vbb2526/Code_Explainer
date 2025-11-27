@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Code Explainer — Auto Detect</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Marked (markdown renderer) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Highlight.js for syntax highlighting -->
+  <link rel="stylesheet" id="hl-light" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <link rel="stylesheet" id="hl-dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" disabled>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Code Explainer</h1>
+        <div class="subtle">Paste code → Auto detect language → Get explanation & simulated output</div>
+      </div>
+      <div class="header-controls">
+        <button id="themeToggle" class="theme-btn">🌙 Dark Mode</button>
+      </div>
+    </header>
+
+    <textarea id="codeInput" placeholder="Paste your code here..."></textarea>
+
+    <div class="controls">
+      <select id="language">
+        <option value="auto">Auto Detect</option>
+        <option value="python">Python</option>
+        <option value="javascript">JavaScript</option>
+        <option value="typescript">TypeScript</option>
+        <option value="java">Java</option>
+        <option value="c">C</option>
+        <option value="cpp">C++</option>
+        <option value="csharp">C#</option>
+        <option value="go">Go</option>
+        <option value="rust">Rust</option>
+        <option value="php">PHP</option>
+        <option value="ruby">Ruby</option>
+        <option value="swift">Swift</option>
+        <option value="kotlin">Kotlin</option>
+        <option value="html">HTML</option>
+        <option value="css">CSS</option>
+        <option value="sql">SQL</option>
+        <option value="bash">Bash / Shell</option>
+        <option value="json">JSON</option>
+        <option value="yaml">YAML</option>
+        <option value="r">R</option>
+        <option value="matlab">MATLAB</option>
+        <option value="dart">Dart</option>
+        <option value="scala">Scala</option>
+      </select>
+
+      <div class="right">
+        <button id="explainBtn">Explain</button>
+      </div>
+    </div>
+
+    <h2>Explanation</h2>
+
+    <div id="detectedBadge" style="display:none; margin-bottom:8px;">
+      <span class="badge" id="detectedLabel"></span>
+    </div>
+
+    <div id="output" class="outputBox">
+      <div class="muted">No explanation yet. Paste code and press Explain.</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

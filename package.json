@@ -1,0 +1,12 @@
+{
+  "name": "code-explainer-vercel",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "groq-sdk": "^0.3.3"
+  },
+  "engines": { "node": "18.x" }
+}

@@ -1,0 +1,361 @@
+/* ---------------------------------------------------
+   GLOBAL RESET + FONTS
+---------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root{
+  --accent: #1a73e8;
+  --card-bg: rgba(255,255,255,0.85);
+  --muted: #6b7280;
+  --text: #111827;
+  --surface: #ffffff;
+  --border: #e6eef9;
+}
+
+* { box-sizing: border-box; }
+
+html,body {
+  height: 100%;
+  margin: 0;
+  background: linear-gradient(135deg, #f2f6fb 0%, #ffffff 100%);
+  font-family: "Inter", Arial, sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* ---------------------------------------------------
+   LAYOUT
+---------------------------------------------------- */
+.container {
+  max-width: 880px;
+  margin: 36px auto;
+  padding: 32px;
+  background: var(--card-bg);
+  border-radius: 16px;
+  border: 1px solid rgba(16,24,40,0.03);
+  box-shadow: 0 12px 34px rgba(16,24,40,0.06);
+  backdrop-filter: blur(6px);
+}
+
+header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.subtle {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ---------------------------------------------------
+   INPUT + CONTROLS
+---------------------------------------------------- */
+textarea#codeInput {
+  width: 100%;
+  min-height: 220px;
+  padding: 14px;
+  font-size: 14.5px;
+  border-radius: 12px;
+  border: 1px solid #dde6f2;
+  resize: vertical;
+  font-family: "Fira Code", monospace;
+  background: #fbfdff;
+  color: #0b1a2b;
+  line-height: 1.5;
+  transition: box-shadow .15s ease, border-color .15s ease;
+}
+
+textarea#codeInput:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 6px 18px rgba(26,115,232,0.10);
+}
+
+.controls {
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin-top: 12px;
+  flex-wrap:wrap;
+}
+
+select#language {
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: 1px solid #e6eef9;
+  background: var(--surface);
+  font-size: 14px;
+  color: var(--text);
+}
+
+.controls .right {
+  margin-left: auto;
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+/* Button */
+button {
+  padding: 11px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  background: linear-gradient(135deg, var(--accent), #165fb3);
+  color: white;
+  box-shadow: 0 6px 18px rgba(26,115,232,0.15);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+button:hover { transform: translateY(-3px); }
+button:active { transform: translateY(0); }
+button[disabled] { opacity: .6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* ---------------------------------------------------
+   OUTPUT HEADERS
+---------------------------------------------------- */
+h2 {
+  margin: 28px 0 12px 0;
+  font-size: 20px;
+  color: #0f172a;
+}
+
+.badge {
+  display: inline-block;
+  background: #eef2ff;
+  color: #0f172a;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 13px;
+  border: 1px solid rgba(26,115,232,0.10);
+}
+
+/* ---------------------------------------------------
+   OUTPUT BOX + MARKDOWN SYLING
+---------------------------------------------------- */
+.outputBox {
+  margin-top: 12px;
+  background: var(--surface);
+  padding: 22px;
+  border-radius: 12px;
+  border: 1px solid rgba(14, 33, 64, 0.04);
+  box-shadow: 0 8px 22px rgba(16,24,40,0.04);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+/* paragraphs */
+.outputBox p {
+  margin: 0 0 12px 0;
+  color: #374151;
+  font-size: 15px;
+}
+
+/* headings inside output */
+.outputBox h1,
+.outputBox h2,
+.outputBox h3,
+.outputBox h4 {
+  margin: 18px 0 10px 0;
+  color: #0f172a;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.outputBox h1 { font-size: 22px; }
+.outputBox h2 { font-size: 20px; }
+.outputBox h3 { font-size: 17px; }
+.outputBox h4 { font-size: 15px; }
+
+/* lists */
+.outputBox ul,
+.outputBox ol {
+  margin: 0 0 12px 20px;
+  padding: 0;
+  color: #374151;
+}
+.outputBox li {
+  margin-bottom: 8px;
+}
+
+/* blockquote */
+.outputBox blockquote {
+  margin: 12px 0;
+  padding: 12px 16px;
+  border-left: 4px solid rgba(26,115,232,0.18);
+  background: #f8fbff;
+  color: #0f172a;
+  border-radius: 8px;
+  font-style: normal;
+  font-size: 15px;
+}
+
+/* inline code */
+.outputBox code {
+  background: #f2f4f7;
+  color: #0f172a;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-family: "Fira Code", monospace;
+  font-size: 0.95em;
+}
+
+/* code blocks */
+.outputBox pre {
+  background: #fbfdff;
+  border: 1px solid var(--border);
+  color: #0b1a2b;
+  padding: 14px;
+  border-radius: 10px;
+  overflow-x: auto;
+  font-family: "Fira Code", monospace;
+  font-size: 13.5px;
+  line-height: 1.45;
+  margin: 12px 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.outputBox pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+/* tables */
+.outputBox table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 14px;
+}
+.outputBox th,
+.outputBox td {
+  border: 1px solid #eef2f7;
+  padding: 8px 10px;
+  text-align: left;
+}
+.outputBox th {
+  background: #fbfdff;
+  font-weight: 600;
+}
+
+/* links */
+.outputBox a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(26,115,232,0.18);
+}
+.outputBox a:hover { text-decoration: underline; }
+
+.outputBox .muted {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ---------------------------------------------------
+   DARK MODE
+---------------------------------------------------- */
+body.dark {
+  background: #0e1217;
+  color: #e5eaf0;
+}
+
+body.dark .container {
+  background: rgba(22, 27, 34, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 34px rgba(0,0,0,0.4);
+}
+
+body.dark textarea#codeInput {
+  background: #1c2128;
+  color: #e5eaf0;
+  border: 1px solid #2d333b;
+}
+
+body.dark select#language {
+  background: #1c2128;
+  color: #e5eaf0;
+  border: 1px solid #2d333b;
+}
+
+body.dark button {
+  background: linear-gradient(135deg, #3c82f6, #1f5fc9);
+}
+
+body.dark .outputBox {
+  background: #161b22;
+  border: 1px solid #2d333b;
+  color: #e5eaf0;
+}
+
+body.dark .outputBox p,
+body.dark .outputBox li {
+  color: #e1e1e1;
+}
+
+body.dark .outputBox code {
+  background: #1e2630;
+  color: #aceeff;
+}
+
+body.dark .outputBox pre {
+  background: #1e2630;
+  border-color: #2d333b;
+  color: #f0faff;
+}
+
+body.dark .badge {
+  background: #1f2937;
+  color: #e5eaf0;
+  border-color: rgba(255,255,255,0.12);
+}
+
+body.dark blockquote {
+  background: #1c2128;
+  border-left-color: #3c82f6;
+  color: #e5eaf0;
+}
+
+/* Toggle theme button */
+.theme-btn {
+  padding: 10px 14px;
+  background: #1a73e8;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.theme-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* ---------------------------------------------------
+   RESPONSIVE
+---------------------------------------------------- */
+@media (max-width: 780px) {
+  .container { padding: 20px; margin: 20px; }
+  textarea#codeInput { min-height: 180px; font-size: 14px; }
+  .outputBox { padding: 16px; font-size: 15px; }
+  .controls { gap:8px; }
+}
