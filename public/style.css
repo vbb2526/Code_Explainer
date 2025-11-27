@@ -4,12 +4,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
 :root{
+  /* Light-mode variables */
   --accent: #1a73e8;
   --card-bg: rgba(255,255,255,0.85);
   --muted: #6b7280;
   --text: #111827;
   --surface: #ffffff;
   --border: #e6eef9;
+  --input-bg: #fbfdff;
+  --input-border: #dde6f2;
+  --btn-gradient-from: #1a73e8;
+  --btn-gradient-to: #165fb3;
+  --shadow-1: 0 12px 34px rgba(16,24,40,0.06);
+  --shadow-2: 0 8px 22px rgba(16,24,40,0.04);
 }
 
 * { box-sizing: border-box; }
@@ -22,6 +29,7 @@ html,body {
   color: var(--text);
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
+  transition: background .25s ease, color .25s ease;
 }
 
 /* ---------------------------------------------------
@@ -34,8 +42,9 @@ html,body {
   background: var(--card-bg);
   border-radius: 16px;
   border: 1px solid rgba(16,24,40,0.03);
-  box-shadow: 0 12px 34px rgba(16,24,40,0.06);
+  box-shadow: var(--shadow-1);
   backdrop-filter: blur(6px);
+  transition: background .25s ease, border .25s ease, box-shadow .25s ease;
 }
 
 header {
@@ -67,13 +76,13 @@ textarea#codeInput {
   padding: 14px;
   font-size: 14.5px;
   border-radius: 12px;
-  border: 1px solid #dde6f2;
+  border: 1px solid var(--input-border);
   resize: vertical;
   font-family: "Fira Code", monospace;
-  background: #fbfdff;
-  color: #0b1a2b;
+  background: var(--input-bg);
+  color: var(--text);
   line-height: 1.5;
-  transition: box-shadow .15s ease, border-color .15s ease;
+  transition: box-shadow .15s ease, border-color .15s ease, background .15s ease, color .15s ease;
 }
 
 textarea#codeInput:focus {
@@ -93,10 +102,11 @@ textarea#codeInput:focus {
 select#language {
   padding: 9px 12px;
   border-radius: 10px;
-  border: 1px solid #e6eef9;
+  border: 1px solid var(--border);
   background: var(--surface);
   font-size: 14px;
   color: var(--text);
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
 }
 
 .controls .right {
@@ -114,10 +124,10 @@ button {
   cursor: pointer;
   font-weight: 600;
   font-size: 14px;
-  background: linear-gradient(135deg, var(--accent), #165fb3);
+  background: linear-gradient(135deg, var(--btn-gradient-from), var(--btn-gradient-to));
   color: white;
   box-shadow: 0 6px 18px rgba(26,115,232,0.15);
-  transition: transform .12s ease, box-shadow .12s ease;
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
 }
 
 button:hover { transform: translateY(-3px); }
@@ -145,7 +155,7 @@ h2 {
 }
 
 /* ---------------------------------------------------
-   OUTPUT BOX + MARKDOWN SYLING
+   OUTPUT BOX + MARKDOWN STYLING
 ---------------------------------------------------- */
 .outputBox {
   margin-top: 12px;
@@ -153,11 +163,12 @@ h2 {
   padding: 22px;
   border-radius: 12px;
   border: 1px solid rgba(14, 33, 64, 0.04);
-  box-shadow: 0 8px 22px rgba(16,24,40,0.04);
+  box-shadow: var(--shadow-2);
   color: var(--text);
   line-height: 1.6;
   font-size: 15px;
   overflow-wrap: anywhere;
+  transition: background .2s ease, color .2s ease, border .2s ease, box-shadow .2s ease;
 }
 
 /* paragraphs */
@@ -270,73 +281,83 @@ h2 {
 }
 
 /* ---------------------------------------------------
-   DARK MODE
+   DARK MODE (full-page & variables override)
 ---------------------------------------------------- */
 body.dark {
-  background: #0e1217;
+  /* page background */
+  background: #000000;            /* full black */
   color: #e5eaf0;
+
+  /* override UI variables so every component uses dark values */
+  --card-bg: rgba(14,16,19,0.98);  /* near-black opaque card */
+  --surface: #0f1418;
+  --text: #e5eaf0;
+  --muted: #9aa4b2;
+  --border: #222831;
+  --input-bg: #0f1418;
+  --input-border: #2a2f35;
+  --btn-gradient-from: #3c82f6;
+  --btn-gradient-to: #1f5fc9;
+  --shadow-1: 0 12px 34px rgba(0,0,0,0.6);
+  --shadow-2: 0 8px 22px rgba(0,0,0,0.5);
 }
 
-body.dark .container {
-  background: rgba(22, 27, 34, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 12px 34px rgba(0,0,0,0.4);
-}
-
+/* inputs & selects adapt via variables */
 body.dark textarea#codeInput {
-  background: #1c2128;
-  color: #e5eaf0;
-  border: 1px solid #2d333b;
+  background: var(--input-bg);
+  color: var(--text);
+  border: 1px solid var(--input-border);
 }
 
 body.dark select#language {
-  background: #1c2128;
-  color: #e5eaf0;
-  border: 1px solid #2d333b;
+  background: var(--input-bg);
+  color: var(--text);
+  border: 1px solid var(--input-border);
 }
 
+/* dark mode button/bg tweaks for outputs */
 body.dark button {
-  background: linear-gradient(135deg, #3c82f6, #1f5fc9);
+  background: linear-gradient(135deg, var(--btn-gradient-from), var(--btn-gradient-to));
 }
 
 body.dark .outputBox {
-  background: #161b22;
-  border: 1px solid #2d333b;
-  color: #e5eaf0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
 }
 
 body.dark .outputBox p,
 body.dark .outputBox li {
-  color: #e1e1e1;
+  color: var(--text);
 }
 
 body.dark .outputBox code {
-  background: #1e2630;
-  color: #aceeff;
+  background: #0f1418;
+  color: #bfe7ff;
 }
 
 body.dark .outputBox pre {
-  background: #1e2630;
-  border-color: #2d333b;
-  color: #f0faff;
+  background: #0f1418;
+  border-color: var(--border);
+  color: #e6f7ff;
 }
 
 body.dark .badge {
   background: #1f2937;
-  color: #e5eaf0;
-  border-color: rgba(255,255,255,0.12);
+  color: var(--text);
+  border-color: rgba(255,255,255,0.06);
 }
 
 body.dark blockquote {
-  background: #1c2128;
+  background: #0f1418;
   border-left-color: #3c82f6;
-  color: #e5eaf0;
+  color: var(--text);
 }
 
 /* Toggle theme button */
 .theme-btn {
   padding: 10px 14px;
-  background: #1a73e8;
+  background: var(--btn-gradient-from);
   color: #fff;
   font-weight: 600;
   border-radius: 8px;
@@ -346,7 +367,7 @@ body.dark blockquote {
 }
 
 .theme-btn:hover {
-  opacity: 0.9;
+  opacity: 0.95;
   transform: translateY(-2px);
 }
 
